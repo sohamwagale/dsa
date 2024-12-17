@@ -23,3 +23,18 @@ Insertion Sort:
     ***
     ****
     *****(array indexes iterated)
+
+Quick Sort:
+    Pick up any element (pivot) and place it inits correct position.All the other elements arrange by smaller on the left and larger on the right.
+    To place any element at its correct space, 
+        1. select any element as pivot.
+        2. start from the first element as 'i' and last element as 'j'
+        3. find the first element from the left (i) that is greater than the pivot and stop. i++
+        4. find the first element from the right (j) that is smaller than the pivot and stop. j--
+        5. Swap elements of indexes, i and j
+        6. again start from existing places of i and j, and find the larger from left and smaller than pivot from right.
+        7. Continue this untill 'i>j' and stop.
+        8. Swap pivot and 'j'
+        9. Assign j as the new pivot (Partition index)
+        10. Use recursion to sort smaller arrays, 'fe to pi-1' and 'pi+1 to le' 
+
