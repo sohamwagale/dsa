@@ -8,7 +8,7 @@ void qs(int *arr,int fe,int le){
     int pivot = fe;
     int i = fe;
     int j = le;
-    while(i<j){
+    while(i<j){//jopryent false hota nahi topryant
         while(arr[i]<= arr[pivot] && i<=le-1){
             i++;
         }

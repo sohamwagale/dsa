@@ -15,7 +15,7 @@ int main(){
     for(int i =sza;i>0;i--){
         int swapcnt =0;
         for(int j = 0;j<i-1;j++){
-//          cout<<"Comparing"<<j<<" and "<<j+1<<endl;
+//             cout<<"Comparing"<<j<<" and "<<j+1<<endl;
             if(arr[j]>arr[j+1]){
                 swap(arr[j],arr[j+1]);
                 swapcnt=1;
