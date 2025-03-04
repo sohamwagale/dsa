@@ -21,7 +21,7 @@ void qs(int *arr,int fe,int le){
     }
 //Dont forget to set the new partition index. The old Pivot becomes the new partition index
     int pi = j;
-    swap(arr[j],arr[fe]);
+    swap(arr[j],arr[pivot]);
     qs(arr,fe,pi-1);
     qs(arr,pi+1, le);
 
