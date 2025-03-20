@@ -26,11 +26,7 @@ Node* create(vector<int> &arr){
 
     for(int i=1;i<arr.size();i++){
         Node* temp = new Node(arr[i]);
-//Adhichyacha haath utchlun next la lavtoy and next kada jatoy
         mover->next = temp;
-//The next 3 statements have same meaning
-//        mover = mover->next;
-//          (*mover).next = temp;
         mover = temp;
     }
     cout<<"The linked list is created... The head is  : "<<head->data<<endl;
@@ -71,22 +67,154 @@ bool find(Node* head,int elem){
     return false;
 }
 
+Node* insHead(Node* head,int elem){
+    Node* temp = new Node(elem);
+    temp->next = head;
+    head = temp;
+    return head;
+}
+
+Node* insb4Val(Node* head,int elem,int val){
+    if(head == nullptr) return new Node(elem);
+    if(head->data == val) return new Node(elem,head);
+    Node* trav = head;
+
+    while(trav->next->data != val)
+        trav = trav->next;
+
+    if (trav->next == nullptr)
+        return head;
+
+    Node* nn = new Node(elem,trav->next);
+    trav->next = nn;
+    return head;
+}
+
+Node* insPos(Node* head, int elem, int pos){
+    if(head == nullptr) 
+        if(pos == 1)
+            return new Node(elem); 
+        else
+            return head;
+
+    if(pos == 1)
+        return new Node(elem,head);
+
+    int size = 0;
+    Node* trav = head;
+    while(trav!=nullptr){
+        size++;
+        if(size==pos){
+            Node* nn = new Node(elem,trav->next);
+            trav->next = nn; 
+            break;
+        }
+        trav = trav->next;
+    }
+    return head;
+}
+
+Node* insTail(Node* head,int elem){
+    Node* trav = head;
+    while(trav->next!=nullptr){
+        trav = trav->next;
+    }
+    trav->next = new Node(elem);
+    return head;
+}
+
+Node* delHead(Node* head){
+    if(head==nullptr) return head;
+    Node* temp = head;
+    head = head->next;
+    delete temp;
+    return head;
+}
+
+Node* delTail(Node* head){
+    if(head->next == nullptr || head == nullptr){
+        return nullptr;
+    }
+    Node* trav =head;
+    while(trav->next->next!=nullptr){
+        trav = trav->next;
+    }
+    delete trav->next;
+    trav->next = nullptr;
+    return head;
+}
+
+Node* delPos(Node* head, int pos){
+    if(pos == 1){
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+        return head;
+    }
+    Node* prev = nullptr;
+    Node* trav =head;
+    int currPos = 0;
+    while(trav!=nullptr){
+        currPos++;
+        if(currPos==pos){
+            prev->next = trav->next;
+            delete trav;
+            break;
+        }
+        prev = trav;
+        trav = trav->next;
+    }
+    return head;
+}
+
+Node* delEl(Node* head, int elem){
+    if(head->data == elem){
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+        return head;
+    }
+    Node* prev = nullptr;
+    Node* trav =head;
+    while(trav!=nullptr){
+        if(trav->data == elem){
+            prev->next = trav->next;
+            delete trav;
+            break;
+        }
+        prev = trav;
+        trav = trav->next;
+    }
+    return head;
+}
+
+Node* delElem(Node* head, int val){
+    if(head==nullptr) return head;
+    if(head->data == val){
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+        return head;
+    }
+    Node* trav =head;
+    while(trav->next!=nullptr){
+        if(trav->next->data == val){
+            Node* temp = trav->next;
+            trav->next = trav->next->next;
+            delete temp;
+            break;
+        }
+        trav = trav->next;
+    }
+    return head;
+}
+
 int main(){
     vector<int> arr = {4,5,6,7,8,9};
 
-    //Creating a linked list
     Node* header = create(arr);
-
-    //Outputting the data of the first element
-    //cout<< header->data<<endl;
-
-    //traversing and printing all the elems of the linked list
     traverse(header);
-
-    //counts the elems by traversing and keeping the counters
     count(header);
-
-    //finds if a particular elm is present or not
     find(header,2);
     find(header,4);
 
